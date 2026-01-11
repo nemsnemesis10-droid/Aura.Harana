@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<style>
+:root{
+  --ink:#ebe7ff;
+  --petal-1:#d7b7ff;
+  --petal-2:#cbb4ff;
+  --petal-3:#bfa7ff;
+  --stem:#8fe0b3;
+  --leaf:#79cfa1;
+  --accent:#c6b7ff;
+}
+
+/* Reset */
+*{ box-sizing:border-box }
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 800px at 80% -200px, #2a1f5a, transparent 60%),
+    radial-gradient(900px 600px at 0% 30%, #1e1a44, transparent 60%),
+    linear-gradient(180deg, #0b0a1a, #070615);
+}
+
+/* STAR LAYER */
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:.4;
+  animation:twinkle 6s ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{ opacity:.3 }
+  50%{ opacity:1 }
+}
+
+/* Layout */
+.stage{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:32px 16px;
+}
+
+.card{
+  width:min(900px,95vw);
+  background:rgba(26,22,48,.9);
+  border-radius:24px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+}
+
+/* Flower Area */
+.canvas{
+  position:relative;
+  height:360px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  padding-bottom:56px;
+}
+
+.bouquet{
+  position:relative;
+  width:360px;
+  height:260px;
+  display:flex;
+  justify-content:center;
+  animation:sway 6s ease-in-out infinite;
+}
+
+@keyframes sway{
+  0%,100%{ transform:rotate(-1deg) }
+  50%{ transform:rotate(1deg) }
+}
+
+.flower{
+  position:absolute;
+  width:120px;
+  height:220px;
+}
+
+.float{
+  position:relative;
+  width:100%;
+  height:100%;
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{ transform:translateY(0) }
+  50%{ transform:translateY(-6px) }
+}
+
+.stem{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:6px;
+  height:160px;
+  background:linear-gradient(var(--stem), #5fbf94);
+  transform:translateX(-50%);
+  border-radius:6px;
+}
+
+.leaf{
+  position:absolute;
+  bottom:50px;
+  width:70px;
+  height:36px;
+  background:linear-gradient(var(--leaf), #5bb88b);
+  border-radius:0 100% 100% 100%;
+}
+
+.leaf.left{ left:-20px; transform:rotate(-22deg) scaleX(-1); }
+.leaf.right{ right:-20px; transform:rotate(22deg); }
+
+.tulip{
+  position:absolute;
+  bottom:140px;
+  left:50%;
+  transform:translateX(-50%);
+  width:86px;
+  height:90px;
+}
+
+.cup{
+  width:100%;
+  height:100%;
+  background:linear-gradient(var(--p1), var(--p2));
+  border-radius:0 0 60px 60px;
+  box-shadow:0 0 18px rgba(198,183,255,.6);
+}
+
+.f1{ left:50%; transform:translateX(-50%) }
+.f2{ left:30%; transform:translateX(-50%) rotate(-6deg) }
+.f3{ left:70%; transform:translateX(-50%) rotate(6deg) }
+
+.f1 .cup{ --p1:var(--petal-1); --p2:#efe2ff }
+.f2 .cup{ --p1:var(--petal-2); --p2:#e6dcff }
+.f3 .cup{ --p1:var(--petal-3); --p2:#ded4ff }
+
+/* Message */
+.message{
+  padding:32px;
+  line-height:1.75;
+}
+.message h2{
+  margin-top:0;
+  color:var(--accent);
+}
+.signature{
+  margin-top:24px;
+  font-weight:600;
+}
+iframe{
+  margin-top:28px;
+  border-radius:12px;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- STARS -->
+<div class="stars">
+  <div class="star" style="top:20%;left:15%;animation-delay:0s"></div>
+  <div class="star" style="top:40%;left:70%;animation-delay:2s"></div>
+  <div class="star" style="top:65%;left:35%;animation-delay:4s"></div>
+  <div class="star" style="top:15%;left:85%;animation-delay:1s"></div>
+  <div class="star" style="top:80%;left:60%;animation-delay:3s"></div>
+</div>
+
+<div class="stage">
+  <div class="card">
+
+    <div class="canvas">
+      <div class="bouquet">
+
+        <div class="flower f1"><div class="float">
+          <div class="stem"></div>
+          <div class="leaf left"></div>
+          <div class="leaf right"></div>
+          <div class="tulip"><div class="cup"></div></div>
+        </div></div>
+
+        <div class="flower f2"><div class="float">
+          <div class="stem"></div>
+          <div class="leaf left"></div>
+          <div class="leaf right"></div>
+          <div class="tulip"><div class="cup"></div></div>
+        </div></div>
+
+        <div class="flower f3"><div class="float">
+          <div class="stem"></div>
+          <div class="leaf left"></div>
+          <div class="leaf right"></div>
+          <div class="tulip"><div class="cup"></div></div>
+        </div></div>
+
+      </div>
+    </div>
+
+    <div class="message">
+            <p>Once upon a time, Filipinos expressed love through <em>harana</em> — through songs sung under windows, through letters written with trembling hands, through effort that spoke louder than fear.</p>
+
+      <p>I grew up with my grandmother, and maybe that’s why I still believe in doing things this way — carefully, sincerely, with intention.</p>
+
+      <p>I don’t know where to begin, or if it’s even okay for me to reach out like this. I don’t know if I’m still learning how to love again… or if I already know the answer.</p>
+
+      <p>But I do know this — I want it to be you.</p>
+
+      <p>I admire your style, your eyes, and your smile. The way you carry yourself, the way your outfits always seem to fit you so well. I’d love to keep talking to you — maybe someday you can even teach me how to dress properly.</p>
+
+      <p>So I’ll ask this gently. May I keep talking to you every day, until I find the courage to finally ask you out?</p>
+
+      <p>I spent my days relearning how to code just to make this. I hope, in its own small way, this speaks to you.</p>
+
+      <p class="signature">Sincerely,<br>Nems</p>
+
+      <iframe src="https://open.spotify.com/embed/track/1GznvGhQ2Ab2Fk0YLLOcL1"
+        width="100%" height="152" allow="autoplay; encrypted-media"></iframe>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
